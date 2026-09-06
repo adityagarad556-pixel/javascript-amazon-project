@@ -5,8 +5,7 @@
 .products-grid {
   display: grid;
 
-  /* - In CSS Grid, 1fr means a column will take up the
-       remaining space in the grid.
+  /* - In CSS Grid, 1fr means a column will take up the remaining space in the grid.
      - If we write 1fr 1fr ... 1fr; 8 times, this will
        divide the grid into 8 columns, each taking up an
        equal amount of the space.
