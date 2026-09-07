@@ -1,4 +1,6 @@
 import {cart} from '../data/cart.js';//.. get outside from current folder 
+import {products} from "../data/products.js";
+
 let productHTML = '';
 products.forEach((product)=>{
     productHTML +=
