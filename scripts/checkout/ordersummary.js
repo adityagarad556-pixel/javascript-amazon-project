@@ -3,14 +3,15 @@ import { getproduct } from '../../data/products.js';
 import { formatcurrancy } from '../utils/money.js';
 import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';
 import { deliveryOptions, getdeliveryOption } from '../../data/deliveryOptions.js';
+import { renderpaymentSummary } from './paymentSummary.js';
 
-const today = dayjs();//external liberary function which shows the todays date
-const deliveryDate = today.add(7, 'days');//.add(how much day to add , 'string to add in it') function to add days in todays date.
+// const today = dayjs();//external liberary function which shows the todays date
+// const deliveryDate = today.add(7, 'days');//.add(how much day to add , 'string to add in it') function to add days in todays date.
 
-deliveryDate.format('dddd,MMMM D');//to convert the date in readable format.
-//dddd: for the day of week
-//MMMM: a month 
-// D : date of the month
+// deliveryDate.format('dddd,MMMM D');//to convert the date in readable format.
+// //dddd: for the day of week
+// //MMMM: a month 
+// // D : date of the month
 
 export function renderOrderSummary()
 {
@@ -114,6 +115,7 @@ export function renderOrderSummary()
 
       document.querySelectorAll('.js-delete-link').forEach((link)=>{
       link.addEventListener('click',()=>{
+
       const productId = link.dataset.productId;
       removeFromCart(productId);
 
@@ -123,6 +125,7 @@ export function renderOrderSummary()
 
       container.remove();
 
+      renderpaymentSummary();// here we regenarate the payment summary code , so when we delete the item from cart then payment summary should update.
       });
       });
 
@@ -136,6 +139,7 @@ export function renderOrderSummary()
 
         renderOrderSummary();//here we regenerate the data to update the order options imediately
         //this concept is recursion , when a function call itself 
+        renderpaymentSummary();
       });
       });
 }
