@@ -15,4 +15,16 @@ export const deliveryOptions =
         deliveryDays:1,
         priceCents:999
     }
-]
+];
+//function to loop through the delivery options and it is going to use in calculating the shipping charges , and dispaly it on payment summary option.
+export function getdeliveryOption(deliveryOptionId)
+{  let deliveryOption;
+
+        deliveryOptions.forEach((option)=>{
+          if(option.id === deliveryOptionId)
+          {
+            deliveryOption = option;
+          }
+        });
+        return deliveryOption || deliveryOptions[0];
+}

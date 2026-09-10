@@ -1,8 +1,8 @@
 import {cart, removeFromCart, updateDeliveryOption} from '../../data/cart.js';
-import { products } from '../../data/products.js';
+import { getproduct } from '../../data/products.js';
 import { formatcurrancy } from '../utils/money.js';
 import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';
-import { deliveryOptions } from '../../data/deliveryOptions.js';
+import { deliveryOptions, getdeliveryOption } from '../../data/deliveryOptions.js';
 
 const today = dayjs();//external liberary function which shows the todays date
 const deliveryDate = today.add(7, 'days');//.add(how much day to add , 'string to add in it') function to add days in todays date.
@@ -19,24 +19,13 @@ export function renderOrderSummary()
 
       cart.forEach((cartItem)=>{
         const productId = cartItem.productId;
-        let matchingProduct;
 
-        products.forEach((product)=>{
-          if(product.id === productId)
-          {
-            matchingProduct = product;
-          }
-        });
+       const  matchingProduct = getproduct(productId);
 
+        
         const deliveryOptionId = cartItem.deliveryOptionId;
-        let deliveryOption;
 
-        deliveryOptions.forEach((option)=>{
-          if(option.id === deliveryOptionId)
-          {
-            deliveryOption = option;
-          }
-        });
+       const deliveryOption = getdeliveryOption(deliveryOptionId);
 
         const today = dayjs();
         const deliveryDate = today.add(deliveryOption.deliveryDays, 'days');
@@ -63,7 +52,7 @@ export function renderOrderSummary()
                       </div>
                       <div class="product-quantity">
                         <span>
-                          Quantity: <span class="quantity-label">2</span>
+                          Quantity: <span class="quantity-label">${cartItem.quantity}</span>
                         </span>
                         <span class="update-quantity-link link-primary">
                           Update
