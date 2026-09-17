@@ -1,7 +1,7 @@
   import {cart, addTocart} from '../data/cart.js';
 //(..) get outside from current folder 
 import {products} from "../data/products.js";
-import { formatcurrancy } from './utils/money.js';
+
 
 let productHTML = '';
 products.forEach((product)=>{
