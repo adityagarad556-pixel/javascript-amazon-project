@@ -1,4 +1,6 @@
 // function to find the matching product in product list using product id
+
+import {formatcurrancy} from '../scripts/utils/money.js';
 export function getproduct(productId)
 {
   let matchingProduct;
@@ -10,6 +12,34 @@ export function getproduct(productId)
           }
         });
         return  matchingProduct;
+}
+
+class product{
+  id;
+  image;
+  name;
+  rating;
+  priceCents;
+
+  constructor(productDetails)
+  {
+    this.id = productDetails.id;
+    this.image = productDetails.image;
+    this.name = productDetails.name;
+    this.rating = productDetails.rating;
+    this.priceCents = productDetails.priceCents;
+  }
+
+  getStarsUrl()
+  {
+    return `images/ratings/rating-${this.rating.stars * 10}.png`;
+  }
+
+  getPrice()
+  {
+    return ` $${formatcurrancy(this.priceCents)}`;
+  }
+  
 }
 
 export const products = [
@@ -671,4 +701,6 @@ export const products = [
       "mens"
     ]
   }
-];
+].map((productDetails)=>{
+return new product(productDetails);
+});
