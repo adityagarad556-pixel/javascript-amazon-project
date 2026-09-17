@@ -1,18 +1,19 @@
 class Cart{
     cartItems;
-    localStorageKey;
+    #localStorageKey;// # , means this is private propery of class,
+    //without # it is public property.
 
     constructor(localStorageKey)
     {
-        this.localStorageKey = localStorageKey;
-        this.loadFromStorage();
+        this.#localStorageKey = localStorageKey;
+        this.#loadFromStorage();
 
     } 
 
-
-    loadFromStorage()
+//'loadFromStorage' is also be a private property by adding # in front of it.
+    #loadFromStorage()
     {
-        this.cartItems =JSON.parse(localStorage.getItem(this.localStorageKey));
+        this.cartItems =JSON.parse(localStorage.getItem(this.#localStorageKey));
 
         if(!this.cartItems)
         {
@@ -31,7 +32,7 @@ class Cart{
     }
 
      saveToStorage(){
-        localStorage.setItem(this.localStorageKey,JSON.stringify(this.cartItems));
+        localStorage.setItem(this.#localStorageKey,JSON.stringify(this.cartItems));
     }
 
      addTocart(productId)
