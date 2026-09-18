@@ -21,17 +21,24 @@ import {loadCart} from '../data/cart.js';
 
 //async = makes a function return a promise
 //await = lets us wait for a promise to finish,before going to the next line.
-
+//reject = lets us create an error in the future.
 async function loadPage()
 {
+    try{
+       // throw 'error1';
+        
+         await loadProductsFetch();
     
-    await loadProductsFetch();
-    
-    const value =  await new Promise((resolve)=>{
+    const value =  await new Promise((resolve,reject)=>{
         loadCart(()=>{
-            resolve();
+           // reject('error3');
+           resolve('value3');
       });
     });
+
+    } catch(error){     
+    console.log('unexpected error. please try later')
+    }
 
     renderOrderSummary();
     renderpaymentSummary();
