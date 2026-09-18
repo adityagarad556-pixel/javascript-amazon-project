@@ -9,3 +9,9 @@ xhr.open('GET','https://supersimplebackend.dev');
 // URL for where to send the massage
 xhr.send();
 xhr.response
+
+/*types of requests:
+GET = get something from backend
+POST = create something
+PUT = update something
+*/
