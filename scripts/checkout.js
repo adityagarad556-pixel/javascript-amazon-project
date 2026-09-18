@@ -2,7 +2,7 @@ import { renderOrderSummary } from "./checkout/ordersummary.js";
 import { renderpaymentSummary } from "./checkout/paymentSummary.js";
 // import '../data/cart-class.js';
 // import '../data/backend-practice.js';
-import { loadProducts } from "../data/products.js";
+import { loadProducts, loadProductsFetch } from "../data/products.js";
 import {loadCart} from '../data/cart.js';
 
 // new Promise((resolve)=>{
@@ -20,11 +20,8 @@ import {loadCart} from '../data/cart.js';
 //resolve: is a function which control when to go to next step
 
 Promise.all([
-    new Promise((resolve)=>{
-        loadProducts(()=>{
-            resolve('value1');
-        });
-    }),
+    loadProductsFetch(),
+    
     new Promise((resolve)=>{
         loadCart(()=>{
             resolve('value2');
