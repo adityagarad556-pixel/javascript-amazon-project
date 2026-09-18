@@ -19,20 +19,40 @@ import {loadCart} from '../data/cart.js';
 //Promise() used to run the code imemediately
 //resolve: is a function which control when to go to next step
 
-Promise.all([
-    loadProductsFetch(),
-    
-    new Promise((resolve)=>{
-        loadCart(()=>{
-            resolve('value2');
-        });
-    })
+//async = makes a function return a promise
+//await = lets us wait for a promise to finish,before going to the next line.
 
-]).then((values)=>{
-    console.log(values)
+async function loadPage()
+{
+    
+    await loadProductsFetch();
+    
+    const value =  await new Promise((resolve)=>{
+        loadCart(()=>{
+            resolve();
+      });
+    });
+
     renderOrderSummary();
     renderpaymentSummary();
-});
+
+}
+loadPage();
+
+// Promise.all([
+//     loadProductsFetch(),
+
+//     new Promise((resolve)=>{
+//         loadCart(()=>{
+//             resolve('value2');
+//         });
+//     })
+
+// ]).then((values)=>{
+//     console.log(values)
+//     renderOrderSummary();
+//     renderpaymentSummary();
+// });
 
 
 // new Promise((resolve)=>{
