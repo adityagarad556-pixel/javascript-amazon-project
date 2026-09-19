@@ -4,7 +4,7 @@ import { formatcurrancy } from '../utils/money.js';
 import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';
 import { deliveryOptions, getdeliveryOption } from '../../data/deliveryOptions.js';
 import { renderpaymentSummary } from './paymentSummary.js';
-
+import { updateCheckoutQuantity} from '../checkout.js';
 // const today = dayjs();//external liberary function which shows the todays date
 // const deliveryDate = today.add(7, 'days');//.add(how much day to add , 'string to add in it') function to add days in todays date.
 
@@ -114,6 +114,7 @@ export function renderOrderSummary()
       document.querySelector('.js-order-summary').innerHTML = cartSummaryHTML;
 
       document.querySelectorAll('.js-delete-link').forEach((link)=>{
+        
       link.addEventListener('click',()=>{
 
       const productId = link.dataset.productId;
@@ -126,6 +127,7 @@ export function renderOrderSummary()
       container.remove();
 
       renderpaymentSummary();// here we regenarate the payment summary code , so when we delete the item from cart then payment summary should update.
+      updateCheckoutQuantity();
       });
       });
 

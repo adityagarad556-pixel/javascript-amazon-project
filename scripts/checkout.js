@@ -4,7 +4,7 @@ import { renderpaymentSummary } from "./checkout/paymentSummary.js";
 // import '../data/backend-practice.js';
 import { loadProducts, loadProductsFetch } from "../data/products.js";
 import {loadCart} from '../data/cart.js';
-
+import {removeFromCart,cart} from '../data/cart.js';
 // new Promise((resolve)=>{
 //    loadProducts(()=>
 //     {
@@ -22,6 +22,8 @@ import {loadCart} from '../data/cart.js';
 //async = makes a function return a promise
 //await = lets us wait for a promise to finish,before going to the next line.
 //reject = lets us create an error in the future.
+
+
 async function loadPage()
 {
     try{
@@ -42,7 +44,7 @@ async function loadPage()
 
     renderOrderSummary();
     renderpaymentSummary();
-
+    updateCheckoutQuantity();
 }
 loadPage();
 
@@ -88,3 +90,17 @@ loadPage();
 //     });
    
 // });
+
+export function updateCheckoutQuantity() {
+  let totalQuantity = 0;
+
+  cart.forEach((cartItem) => {
+    totalQuantity += cartItem.quantity;
+  });
+
+  document.querySelector('.js-checkout-items').innerHTML =
+    totalQuantity === 1
+      ? '1 item'
+      : `${totalQuantity} items`;
+}
+updateCheckoutQuantity();
