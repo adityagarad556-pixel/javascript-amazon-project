@@ -4,10 +4,35 @@ import {products, loadProducts} from "../data/products.js";
 
 loadProducts(renderProductsGrid);
 
-function renderProductsGrid()
+document.querySelector('.search-bar')
+  .addEventListener('input', () => {
+
+    const searchText =
+      document.querySelector('.search-bar')
+      .value
+      .toLowerCase()
+      .trim();
+
+    const filteredProducts = products.filter((product) => {
+
+      const nameMatch =
+        product.name.toLowerCase().includes(searchText);
+
+      const keywordMatch =
+        product.keywords?.some((keyword) =>
+          keyword.toLowerCase().includes(searchText)
+        );
+
+      return nameMatch || keywordMatch;
+    });
+
+    renderProductsGrid(filteredProducts);
+});
+
+function renderProductsGrid(productTorender = products)
 {
   let productHTML = '';
-  products.forEach((product)=>{
+  productTorender.forEach((product)=>{
       productHTML +=
       `
           <div class="product-container">

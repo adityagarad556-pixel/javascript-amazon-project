@@ -20,6 +20,7 @@ class product{
   name;
   rating;
   priceCents;
+  keywords;
 
   constructor(productDetails)
   {
@@ -28,6 +29,7 @@ class product{
     this.name = productDetails.name;
     this.rating = productDetails.rating;
     this.priceCents = productDetails.priceCents;
+    this.keywords = productDetails.keywords;
   }
 
   getStarsUrl()
@@ -117,7 +119,7 @@ export function loadProducts(func)
       return new product(productDetails);
     });
     console.log('load products');
-    
+    func();
   });
   xhr.open('GET','https://supersimplebackend.dev/products');
   xhr.send();
