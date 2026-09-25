@@ -25,8 +25,8 @@ An Amazon-like shopping website built using HTML, CSS, and JavaScript.
 - handle backend data
 
 ## How to Run
-1. Download the project.
-2. Open amazon.html in a browser.
+1. go to the website :
+   https://adityagarad556-pixel.github.io/javascript-amazon-project/
 
 ## Author
 Aditya Garad
